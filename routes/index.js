@@ -1,4 +1,4 @@
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
 
 var quizController = require('../controllers/quiz_controller');
@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 router.get('/author', function(req, res, next) {
     res.render('author');
 });
+
 
 
 // Autoload de rutas que usen :quizId
@@ -29,6 +30,12 @@ router.delete('/quizzes/:quizId(\\d+)',    quizController.destroy);
 
 router.get('/quizzes/:quizId(\\d+)/play',  quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
+
+
+//Pagina de ayuda
+router.get('/help', function(req, res, next) {
+    res.render('ayuda');
+});
 
 
 module.exports = router;
