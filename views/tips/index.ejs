@@ -3,11 +3,13 @@
 <ul>
     <% for (var i in tips) { %>
         <% var tip = tips[i]; %>
+	<% var tipAuthor = tips[i].Author %>
 
         <li>
 
             <% if (tip.accepted ||
-                    (session.user && (session.user.isAdmin || (quizAuthorId && quizAuthorId === session.user.id)))) { %>
+                    (session.user && (session.user.isAdmin || (quizAuthorId && quizAuthorId === session.user.id)
+||(tipAuthor && tipAuthor.id && tip.Author.id === session.user.id) )) ) { %>
 
                 <%= tip.text %>
 
@@ -28,4 +30,5 @@
 
         </li>
     <% } %>
+
 </ul>

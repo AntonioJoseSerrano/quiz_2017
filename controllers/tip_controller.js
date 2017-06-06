@@ -84,6 +84,26 @@ exports.accept = function (req, res, next) {
 };
 
 
+//Modificacion MW para ver si admin o no
+
+exports.adminOrAuthorTipRequired = function(req, res, next){
+
+	var isAdmin = req.session.user.isAdmin;
+	var isAuthor = req.quiz.AuthorId === req.session.user.id;
+	var isAuthorTip = req.tip.AuthorId === req.session.user.id;
+	
+	if(isAdmin || isAuthor || idAuthorTip){
+
+		next();
+	}
+
+	else{
+		console.log('Operacion Denegada');
+		res.send(403);
+	}
+};
+
+
 // DELETE /quizzes/:quizId/tips/:tipId
 exports.destroy = function (req, res, next) {
 
