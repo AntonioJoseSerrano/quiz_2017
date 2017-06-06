@@ -1,4 +1,4 @@
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
 
 var quizController = require('../controllers/quiz_controller');
@@ -45,6 +45,7 @@ router.get('/', function (req, res, next) {
 router.get('/author', function (req, res, next) {
     res.render('author');
 });
+
 
 
 // Autoload de rutas que usen :quizId
@@ -130,6 +131,17 @@ router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/accept',
 router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)',
     sessionController.loginRequired,
     tipController.destroy);
+
+
+//Ruta de random_play = Practica 52
+router.get('/quizzes/randomplay', quizController.randomplay);
+//Ruta de randomcheck = practica 53
+router.get('/quizzes/randomcheck/:quizId(\\d+)', quizController.randomcheck);
+
+//Pagina de ayuda
+router.get('/help', function(req, res, next) {
+    res.render('ayuda');
+});
 
 
 module.exports = router;
